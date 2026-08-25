@@ -109,6 +109,7 @@ model Categoria {
 
 model Producto {
   id               String       @id @default(cuid())
+  slug             String       @unique
   nombre           String
   marcaId          String       @map("marca_id")
   categoriaId      String       @map("categoria_id")
