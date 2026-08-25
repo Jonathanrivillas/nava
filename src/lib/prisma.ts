@@ -5,6 +5,8 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
+// Pooler de Supabase (Supavisor): mantiene bajo el número de conexiones abiertas
+// en entornos serverless. Las migraciones usan DIRECT_URL, ver prisma7.config.ts.
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
