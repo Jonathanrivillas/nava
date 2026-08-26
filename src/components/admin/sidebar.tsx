@@ -14,7 +14,7 @@ import {
 const ITEMS = [
   { label: "Estadísticas", href: null, icon: LayoutDashboardIcon },
   { label: "Productos", href: "/admin/productos", icon: PackageIcon },
-  { label: "Precios y ofertas", href: null, icon: TagIcon },
+  { label: "Precios y ofertas", href: "/admin/ofertas", icon: TagIcon },
   { label: "Banners", href: null, icon: ImagePlaceholderIcon },
   { label: "Pedidos", href: "/admin/pedidos", icon: ShoppingBagIcon },
   { label: "Distribuidores e inventario", href: null, icon: UsersIcon },
