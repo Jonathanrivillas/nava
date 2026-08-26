@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import type { Categoria, Distribuidor, Marca, Producto } from "@/generated/prisma/client";
+import type { Categoria, Distribuidor, Marca } from "@/generated/prisma/client";
+import type { ProductoSerializado } from "@/lib/serialize";
 import { crearProducto, actualizarProducto, subirImagenProducto } from "@/app/admin/productos/actions";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,7 +24,7 @@ export function ProductoForm({
   categorias,
   distribuidores,
 }: {
-  producto?: Producto;
+  producto?: ProductoSerializado;
   marcas: Marca[];
   categorias: Categoria[];
   distribuidores: Distribuidor[];

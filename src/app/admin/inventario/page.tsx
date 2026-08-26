@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { getInventarioOptions } from "@/app/admin/inventario/actions";
+import { serializarProducto } from "@/lib/serialize";
 import { MovimientoForm } from "@/components/admin/movimiento-form";
 import { CompraDistribuidorForm } from "@/components/admin/compra-distribuidor-form";
 
@@ -21,7 +22,10 @@ export default async function AdminInventarioPage() {
     }),
   ]);
 
-  const productosStockBajo = productos.filter((p) => p.activo && p.stock < STOCK_BAJO_UMBRAL);
+  const productosSerializados = productos.map(serializarProducto);
+  const productosStockBajo = productosSerializados.filter(
+    (p) => p.activo && p.stock < STOCK_BAJO_UMBRAL,
+  );
 
   return (
     <div className="flex flex-col gap-8 p-8">
@@ -52,8 +56,8 @@ export default async function AdminInventarioPage() {
       )}
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <MovimientoForm productos={productos} />
-        <CompraDistribuidorForm productos={productos} distribuidores={distribuidores} />
+        <MovimientoForm productos={productosSerializados} />
+        <CompraDistribuidorForm productos={productosSerializados} distribuidores={distribuidores} />
       </div>
 
       <div>

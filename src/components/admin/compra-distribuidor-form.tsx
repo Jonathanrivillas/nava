@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import type { Distribuidor, Producto } from "@/generated/prisma/client";
+import type { Distribuidor } from "@/generated/prisma/client";
+import type { ProductoSerializado } from "@/lib/serialize";
 import { registrarCompraDistribuidor } from "@/app/admin/inventario/actions";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,7 +20,7 @@ export function CompraDistribuidorForm({
   productos,
   distribuidores,
 }: {
-  productos: Producto[];
+  productos: ProductoSerializado[];
   distribuidores: Distribuidor[];
 }) {
   const router = useRouter();

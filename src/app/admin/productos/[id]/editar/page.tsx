@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getFormOptions } from "@/app/admin/productos/actions";
+import { serializarProducto } from "@/lib/serialize";
 import { ProductoForm } from "@/components/admin/producto-form";
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ export default async function EditarProductoPage({
     <div className="flex flex-col gap-6 p-8">
       <h1 className="font-display text-3xl">Editar producto</h1>
       <ProductoForm
-        producto={producto}
+        producto={serializarProducto(producto)}
         marcas={marcas}
         categorias={categorias}
         distribuidores={distribuidores}

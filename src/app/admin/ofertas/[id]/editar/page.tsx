@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import { serializarOferta, serializarProducto } from "@/lib/serialize";
 import { OfertaForm } from "@/components/admin/oferta-form";
 
 export const metadata: Metadata = {
@@ -23,7 +24,7 @@ export default async function EditarOfertaPage({
   return (
     <div className="flex flex-col gap-6 p-8">
       <h1 className="font-display text-3xl">Editar oferta</h1>
-      <OfertaForm oferta={oferta} productos={productos} />
+      <OfertaForm oferta={serializarOferta(oferta)} productos={productos.map(serializarProducto)} />
     </div>
   );
 }

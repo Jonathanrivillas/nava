@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import type { Oferta, Producto } from "@/generated/prisma/client";
+import type { OfertaSerializada, ProductoSerializado } from "@/lib/serialize";
 import { crearOferta, actualizarOferta } from "@/app/admin/ofertas/actions";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,8 +23,8 @@ export function OfertaForm({
   oferta,
   productos,
 }: {
-  oferta?: Oferta;
-  productos: Producto[];
+  oferta?: OfertaSerializada;
+  productos: ProductoSerializado[];
 }) {
   const router = useRouter();
   const [tipo, setTipo] = useState<"PORCENTAJE" | "MONTO_FIJO">(oferta?.tipo ?? "PORCENTAJE");

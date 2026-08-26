@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import type { Producto } from "@/generated/prisma/client";
+import type { ProductoSerializado } from "@/lib/serialize";
 import { registrarMovimiento } from "@/app/admin/inventario/actions";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,7 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-export function MovimientoForm({ productos }: { productos: Producto[] }) {
+export function MovimientoForm({ productos }: { productos: ProductoSerializado[] }) {
   const router = useRouter();
   const [tipo, setTipo] = useState<"ENTRADA" | "SALIDA">("ENTRADA");
   const [enviando, setEnviando] = useState(false);
