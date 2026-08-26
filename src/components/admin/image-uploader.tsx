@@ -1,15 +1,17 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { subirImagenProducto } from "@/app/admin/productos/actions";
+import type { SubirImagenResult } from "@/lib/supabase-admin";
 import { UploadIcon, ImagePlaceholderIcon } from "@/components/storefront/icons";
 
 export function ImageUploader({
   name,
   defaultValue,
+  accion,
 }: {
   name: string;
   defaultValue?: string | null;
+  accion: (file: File) => Promise<SubirImagenResult>;
 }) {
   const [url, setUrl] = useState(defaultValue ?? "");
   const [subiendo, setSubiendo] = useState(false);
@@ -22,7 +24,7 @@ export function ImageUploader({
     setError(null);
     setSubiendo(true);
 
-    const resultado = await subirImagenProducto(file);
+    const resultado = await accion(file);
 
     if (!resultado.ok) {
       setError(resultado.error);

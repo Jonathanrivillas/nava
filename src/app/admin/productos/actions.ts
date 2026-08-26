@@ -4,7 +4,7 @@ import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/auth";
-import { supabaseAdmin, PRODUCTOS_BUCKET } from "@/lib/supabase-admin";
+import { subirImagen, type SubirImagenResult } from "@/lib/supabase-admin";
 
 async function requireAdmin() {
   const session = await auth();
@@ -135,32 +135,9 @@ export async function toggleActivoProducto(id: string, activo: boolean) {
   revalidatePath("/catalogo");
 }
 
-export type SubirImagenResult = { ok: true; url: string } | { ok: false; error: string };
-
 export async function subirImagenProducto(file: File): Promise<SubirImagenResult> {
   await requireAdmin();
-
-  if (!file || file.size === 0) {
-    return { ok: false, error: "Selecciona una imagen." };
-  }
-  if (file.size > 5 * 1024 * 1024) {
-    return { ok: false, error: "La imagen no debe superar 5MB." };
-  }
-
-  const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
-  const path = `${crypto.randomUUID()}.${ext}`;
-
-  const { error } = await supabaseAdmin.storage.from(PRODUCTOS_BUCKET).upload(path, file, {
-    contentType: file.type,
-    upsert: false,
-  });
-
-  if (error) {
-    return { ok: false, error: "No se pudo subir la imagen. Intenta de nuevo." };
-  }
-
-  const { data } = supabaseAdmin.storage.from(PRODUCTOS_BUCKET).getPublicUrl(path);
-  return { ok: true, url: data.publicUrl };
+  return subirImagen(file, "productos");
 }
 
 export async function getFormOptions() {

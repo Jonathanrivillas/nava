@@ -8,7 +8,7 @@ export async function StorefrontHeader() {
     <header className="border-b border-border">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 lg:px-10">
         <Link
-          href="/catalogo"
+          href="/"
           className="font-display text-3xl italic font-semibold text-foreground"
         >
           Nava

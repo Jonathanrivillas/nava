@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Categoria, Distribuidor, Marca, Producto } from "@/generated/prisma/client";
-import { crearProducto, actualizarProducto } from "@/app/admin/productos/actions";
+import { crearProducto, actualizarProducto, subirImagenProducto } from "@/app/admin/productos/actions";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -209,7 +209,11 @@ export function ProductoForm({
 
       <div className="flex flex-col gap-1.5">
         <Label>Imagen del producto</Label>
-        <ImageUploader name="imagenPrincipal" defaultValue={producto?.imagenPrincipal} />
+        <ImageUploader
+          name="imagenPrincipal"
+          defaultValue={producto?.imagenPrincipal}
+          accion={subirImagenProducto}
+        />
       </div>
 
       <label className="flex items-center gap-2.5 text-sm font-medium">
