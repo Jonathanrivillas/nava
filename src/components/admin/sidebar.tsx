@@ -17,7 +17,7 @@ const ITEMS = [
   { label: "Precios y ofertas", href: "/admin/ofertas", icon: TagIcon },
   { label: "Banners", href: "/admin/banners", icon: ImagePlaceholderIcon },
   { label: "Pedidos", href: "/admin/pedidos", icon: ShoppingBagIcon },
-  { label: "Distribuidores e inventario", href: null, icon: UsersIcon },
+  { label: "Distribuidores e inventario", href: "/admin/inventario", icon: UsersIcon },
   { label: "Usuarios y roles", href: null, icon: UsersIcon },
 ];
 
