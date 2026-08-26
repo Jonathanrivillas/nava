@@ -3,26 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { formatPrecio } from "@/lib/format";
+import { ESTADO_LABEL, ESTADO_BADGE_CLASS, METODO_PAGO_LABEL } from "@/lib/pedidos";
 import { Button } from "@/components/ui/button";
 import { CheckCircleIcon } from "@/components/storefront/icons";
 
 export const metadata: Metadata = {
   title: "Pedido confirmado — Nava",
-};
-
-const METODO_PAGO_LABEL: Record<string, string> = {
-  CONTRA_ENTREGA: "Pago contra entrega",
-  TRANSFERENCIA: "Transferencia bancaria",
-  PASARELA_ONLINE: "Pasarela en línea",
-};
-
-const ESTADO_LABEL: Record<string, string> = {
-  PENDIENTE: "Pendiente",
-  CONFIRMADO: "Confirmado",
-  EN_PREPARACION: "En preparación",
-  EN_CAMINO: "En camino",
-  ENTREGADO: "Entregado",
-  CANCELADO: "Cancelado",
 };
 
 export default async function PedidoConfirmacionPage({
@@ -54,7 +40,7 @@ export default async function PedidoConfirmacionPage({
             <div className="text-xs text-muted-foreground">Pedido</div>
             <div className="font-mono text-sm font-semibold">{pedido.id}</div>
           </div>
-          <span className="rounded-full bg-warning px-3 py-1 text-xs font-semibold text-warning-foreground">
+          <span className={`rounded-full px-3 py-1 text-xs font-semibold ${ESTADO_BADGE_CLASS[pedido.estado]}`}>
             {ESTADO_LABEL[pedido.estado]}
           </span>
         </div>
