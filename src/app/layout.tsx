@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Work_Sans } from "next/font/google";
+import { CartProvider } from "@/components/cart/cart-context";
 import "./globals.css";
 
 const workSans = Work_Sans({
@@ -27,7 +28,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="es"
       className={`${workSans.variable} ${cormorantGaramond.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }

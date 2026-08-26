@@ -2,20 +2,10 @@ import Link from "next/link";
 import type { Marca, Oferta, Producto } from "@/generated/prisma/client";
 import { formatPrecio } from "@/lib/format";
 import { calcularPrecioFinal, getOfertaActiva } from "@/lib/ofertas";
+import { gradienteFor } from "@/lib/placeholder";
 import { ImagePlaceholderIcon } from "@/components/storefront/icons";
 
 type ProductoConRelaciones = Producto & { marca: Marca; ofertas: Oferta[] };
-
-const GRADIENTES = [
-  "from-[oklch(94%_0.03_40)] to-[oklch(90%_0.04_30)]",
-  "from-[oklch(93%_0.03_60)] to-[oklch(88%_0.04_50)]",
-  "from-[oklch(92%_0.05_20)] to-[oklch(87%_0.06_15)]",
-];
-
-function gradienteFor(id: string) {
-  const index = id.charCodeAt(0) % GRADIENTES.length;
-  return GRADIENTES[index];
-}
 
 export function ProductCard({ producto }: { producto: ProductoConRelaciones }) {
   const oferta = getOfertaActiva(producto.ofertas);

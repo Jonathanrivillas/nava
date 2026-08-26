@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { SearchIcon, UserIcon, HeartIcon, CartIcon } from "@/components/storefront/icons";
+import { SearchIcon, UserIcon, HeartIcon } from "@/components/storefront/icons";
+import { CartBadge } from "@/components/cart/cart-badge";
 
 export function StorefrontHeader() {
   return (
@@ -29,7 +30,7 @@ export function StorefrontHeader() {
         <div className="flex items-center gap-5 text-foreground">
           <UserIcon />
           <HeartIcon />
-          <CartIcon />
+          <CartBadge />
         </div>
       </div>
     </header>

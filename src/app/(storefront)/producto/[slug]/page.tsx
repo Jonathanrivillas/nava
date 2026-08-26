@@ -4,10 +4,9 @@ import { notFound } from "next/navigation";
 import { getProductoPorSlug, getProductosRelacionados } from "@/lib/products";
 import { calcularPrecioFinal, getOfertaActiva } from "@/lib/ofertas";
 import { formatPrecio } from "@/lib/format";
-import { Button } from "@/components/ui/button";
 import { ProductCard } from "@/components/storefront/product-card";
-import { QuantitySelector } from "@/components/storefront/quantity-selector";
-import { CartIcon, CheckCircleIcon, ImagePlaceholderIcon, TruckIcon } from "@/components/storefront/icons";
+import { AddToCart } from "@/components/storefront/add-to-cart";
+import { CheckCircleIcon, ImagePlaceholderIcon, TruckIcon } from "@/components/storefront/icons";
 
 export async function generateMetadata({
   params,
@@ -84,20 +83,16 @@ export default async function ProductoPage({
 
           <div className="my-2 h-px bg-border" />
 
-          <div className="flex items-center gap-5">
-            <QuantitySelector max={Math.max(1, producto.stock)} />
-            <Button
-              disabled={agotado}
-              className="flex h-12 flex-1 items-center justify-center gap-2 rounded-lg text-sm"
-              title="Disponible próximamente"
-            >
-              <CartIcon width={18} height={18} />
-              Agregar al carrito
-            </Button>
-          </div>
-          <p className="text-xs text-muted-foreground">
-            El carrito de compras se habilita en el siguiente paso del desarrollo.
-          </p>
+          <AddToCart
+            producto={{
+              id: producto.id,
+              slug: producto.slug,
+              nombre: producto.nombre,
+              marcaNombre: producto.marca.nombre,
+              precioUnitario: precioFinal,
+              stock: producto.stock,
+            }}
+          />
 
           <div className="mt-2 flex items-center gap-3 rounded-lg bg-muted px-4 py-3">
             <TruckIcon width={18} height={18} className="text-primary" />
