@@ -31,8 +31,10 @@ export function EstadoPedidoSelect({ id, estado }: { id: string; estado: Estado 
     });
   }
 
+  const items = ESTADOS.map((e) => ({ value: e, label: ESTADO_LABEL[e] }));
+
   return (
-    <Select value={valor} onValueChange={onChange}>
+    <Select items={items} value={valor} onValueChange={onChange}>
       <SelectTrigger
         disabled={pending}
         className={`h-8 w-[160px] border-none text-[12px] font-semibold ${ESTADO_BADGE_CLASS[valor]}`}

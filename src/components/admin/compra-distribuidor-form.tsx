@@ -71,7 +71,10 @@ export function CompraDistribuidorForm({
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="compra-distribuidorId">Distribuidor</Label>
-          <Select name="distribuidorId">
+          <Select
+            items={distribuidores.map((d) => ({ value: d.id, label: d.nombre }))}
+            name="distribuidorId"
+          >
             <SelectTrigger id="compra-distribuidorId">
               <SelectValue placeholder="Selecciona un distribuidor" />
             </SelectTrigger>
@@ -89,7 +92,10 @@ export function CompraDistribuidorForm({
         </div>
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="compra-productoId">Producto</Label>
-          <Select name="productoId">
+          <Select
+            items={productosDropshipping.map((p) => ({ value: p.id, label: p.nombre }))}
+            name="productoId"
+          >
             <SelectTrigger id="compra-productoId">
               <SelectValue placeholder="Selecciona un producto" />
             </SelectTrigger>

@@ -81,7 +81,11 @@ export function ProductoForm({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="marcaId">Marca</Label>
-          <Select name="marcaId" defaultValue={producto?.marcaId}>
+          <Select
+            items={marcas.map((m) => ({ value: m.id, label: m.nombre }))}
+            name="marcaId"
+            defaultValue={producto?.marcaId}
+          >
             <SelectTrigger id="marcaId">
               <SelectValue placeholder="Selecciona una marca" />
             </SelectTrigger>
@@ -97,7 +101,11 @@ export function ProductoForm({
         </div>
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="categoriaId">Categoría</Label>
-          <Select name="categoriaId" defaultValue={producto?.categoriaId}>
+          <Select
+            items={categorias.map((c) => ({ value: c.id, label: c.nombre }))}
+            name="categoriaId"
+            defaultValue={producto?.categoriaId}
+          >
             <SelectTrigger id="categoriaId">
               <SelectValue placeholder="Selecciona una categoría" />
             </SelectTrigger>
@@ -175,7 +183,14 @@ export function ProductoForm({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="tipo">Tipo</Label>
-          <Select value={tipo} onValueChange={(v) => v && setTipo(v as "PROPIO" | "DROPSHIPPING")}>
+          <Select
+            items={[
+              { value: "PROPIO", label: "Inventario propio" },
+              { value: "DROPSHIPPING", label: "Dropshipping" },
+            ]}
+            value={tipo}
+            onValueChange={(v) => v && setTipo(v as "PROPIO" | "DROPSHIPPING")}
+          >
             <SelectTrigger id="tipo">
               <SelectValue />
             </SelectTrigger>
@@ -188,7 +203,11 @@ export function ProductoForm({
         {tipo === "DROPSHIPPING" && (
           <div className="flex flex-col gap-1.5">
             <Label htmlFor="distribuidorId">Distribuidor</Label>
-            <Select name="distribuidorId" defaultValue={producto?.distribuidorId ?? undefined}>
+            <Select
+              items={distribuidores.map((d) => ({ value: d.id, label: d.nombre }))}
+              name="distribuidorId"
+              defaultValue={producto?.distribuidorId ?? undefined}
+            >
               <SelectTrigger id="distribuidorId">
                 <SelectValue placeholder="Selecciona un distribuidor" />
               </SelectTrigger>

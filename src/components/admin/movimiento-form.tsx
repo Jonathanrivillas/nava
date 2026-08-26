@@ -55,7 +55,10 @@ export function MovimientoForm({ productos }: { productos: Producto[] }) {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="mov-productoId">Producto</Label>
-          <Select name="productoId">
+          <Select
+            items={productos.map((p) => ({ value: p.id, label: `${p.nombre} (stock: ${p.stock})` }))}
+            name="productoId"
+          >
             <SelectTrigger id="mov-productoId">
               <SelectValue placeholder="Selecciona un producto" />
             </SelectTrigger>
@@ -71,7 +74,14 @@ export function MovimientoForm({ productos }: { productos: Producto[] }) {
         </div>
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="mov-tipo">Tipo</Label>
-          <Select value={tipo} onValueChange={(v) => v && setTipo(v as "ENTRADA" | "SALIDA")}>
+          <Select
+            items={[
+              { value: "ENTRADA", label: "Entrada" },
+              { value: "SALIDA", label: "Salida" },
+            ]}
+            value={tipo}
+            onValueChange={(v) => v && setTipo(v as "ENTRADA" | "SALIDA")}
+          >
             <SelectTrigger id="mov-tipo">
               <SelectValue />
             </SelectTrigger>

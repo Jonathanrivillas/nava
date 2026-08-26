@@ -28,7 +28,7 @@ export function CatalogoOrden() {
   }
 
   return (
-    <Select value={sort} onValueChange={onChange}>
+    <Select items={OPCIONES} value={sort} onValueChange={onChange}>
       <SelectTrigger className="h-10 w-[220px] text-sm">
         <SelectValue />
       </SelectTrigger>

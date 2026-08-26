@@ -64,7 +64,11 @@ export function OfertaForm({
     <form onSubmit={onSubmit} className="flex max-w-xl flex-col gap-6">
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="productoId">Producto</Label>
-        <Select name="productoId" defaultValue={oferta?.productoId}>
+        <Select
+          items={productos.map((p) => ({ value: p.id, label: p.nombre }))}
+          name="productoId"
+          defaultValue={oferta?.productoId}
+        >
           <SelectTrigger id="productoId">
             <SelectValue placeholder="Selecciona un producto" />
           </SelectTrigger>
@@ -82,7 +86,14 @@ export function OfertaForm({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="tipo">Tipo de descuento</Label>
-          <Select value={tipo} onValueChange={(v) => v && setTipo(v as "PORCENTAJE" | "MONTO_FIJO")}>
+          <Select
+            items={[
+              { value: "PORCENTAJE", label: "Porcentaje (%)" },
+              { value: "MONTO_FIJO", label: "Monto fijo ($)" },
+            ]}
+            value={tipo}
+            onValueChange={(v) => v && setTipo(v as "PORCENTAJE" | "MONTO_FIJO")}
+          >
             <SelectTrigger id="tipo">
               <SelectValue />
             </SelectTrigger>
