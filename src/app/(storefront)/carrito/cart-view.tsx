@@ -66,12 +66,9 @@ export function CartView() {
               </div>
             </div>
 
-            <Button disabled className="h-12 text-[15px]" title="Disponible próximamente">
-              Continuar al pago
-            </Button>
-            <p className="text-center text-xs text-muted-foreground">
-              El checkout se habilita en el siguiente paso del desarrollo.
-            </p>
+            <Link href="/checkout">
+              <Button className="h-12 w-full text-[15px]">Continuar al pago</Button>
+            </Link>
           </div>
         </div>
       </div>
