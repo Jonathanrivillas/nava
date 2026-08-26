@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SearchIcon, HeartIcon } from "@/components/storefront/icons";
+import { SearchIcon } from "@/components/storefront/icons";
 import { CartBadge } from "@/components/cart/cart-badge";
 import { UserMenu } from "@/components/storefront/user-menu";
 
@@ -7,12 +7,19 @@ export async function StorefrontHeader() {
   return (
     <header className="border-b border-border">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 lg:px-10">
-        <Link
-          href="/"
-          className="font-display text-3xl italic font-semibold text-foreground"
-        >
-          Nava
-        </Link>
+        <div className="flex items-center gap-10">
+          <Link href="/" className="font-display text-3xl italic font-semibold text-foreground">
+            Nava
+          </Link>
+          <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
+            <Link href="/catalogo" className="text-foreground hover:text-primary">
+              Catálogo
+            </Link>
+            <Link href="/catalogo?oferta=1" className="text-foreground hover:text-primary">
+              Ofertas
+            </Link>
+          </nav>
+        </div>
 
         <form
           action="/catalogo"
@@ -30,7 +37,6 @@ export async function StorefrontHeader() {
 
         <div className="flex items-center gap-5 text-foreground">
           <UserMenu />
-          <HeartIcon />
           <CartBadge />
         </div>
       </div>

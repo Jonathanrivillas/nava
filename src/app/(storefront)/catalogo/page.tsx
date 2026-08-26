@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { getFiltrosDisponibles, getProductosCatalogo, type CatalogoSort } from "@/lib/products";
 import { ProductCard } from "@/components/storefront/product-card";
 import { CatalogoFiltros } from "@/components/storefront/catalogo-filtros";
@@ -29,6 +30,7 @@ export default async function CatalogoPage({
     precioMin: params.precioMin ? Number(params.precioMin) : undefined,
     precioMax: params.precioMax ? Number(params.precioMax) : undefined,
     soloDisponibles: params.disponible === "1",
+    soloOfertas: params.oferta === "1",
     sort: (params.sort as CatalogoSort) ?? "recientes",
     page: params.page ? Number(params.page) : 1,
   };
@@ -41,9 +43,9 @@ export default async function CatalogoPage({
   return (
     <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
       <div className="mb-2 text-sm text-muted-foreground">
-        Inicio / <span className="font-semibold text-foreground">Catálogo</span>
+        <Link href="/">Inicio</Link> / <span className="font-semibold text-foreground">Catálogo</span>
       </div>
-      <h1 className="mb-8 font-display text-4xl">Todo el catálogo</h1>
+      <h1 className="mb-8 font-display text-4xl">{filtros.soloOfertas ? "Ofertas" : "Todo el catálogo"}</h1>
 
       <div className="flex gap-10">
         <CatalogoFiltros marcas={marcas} categorias={categorias} />

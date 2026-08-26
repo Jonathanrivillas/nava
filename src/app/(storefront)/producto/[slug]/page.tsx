@@ -36,7 +36,7 @@ export default async function ProductoPage({
   return (
     <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
       <div className="mb-6 text-sm text-muted-foreground">
-        Inicio / <Link href="/catalogo">Catálogo</Link> / {producto.categoria.nombre} /{" "}
+        <Link href="/">Inicio</Link> / <Link href="/catalogo">Catálogo</Link> / {producto.categoria.nombre} /{" "}
         <span className="font-semibold text-foreground">{producto.nombre}</span>
       </div>
 

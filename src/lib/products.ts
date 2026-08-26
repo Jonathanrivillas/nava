@@ -12,6 +12,7 @@ export type CatalogoFiltros = {
   precioMin?: number;
   precioMax?: number;
   soloDisponibles?: boolean;
+  soloOfertas?: boolean;
   sort?: CatalogoSort;
   page?: number;
 };
@@ -36,6 +37,10 @@ function buildWhere(filtros: CatalogoFiltros): Prisma.ProductoWhereInput {
   }
   if (filtros.soloDisponibles) {
     where.stock = { gt: 0 };
+  }
+  if (filtros.soloOfertas) {
+    const ahora = new Date();
+    where.ofertas = { some: { fechaInicio: { lte: ahora }, fechaFin: { gte: ahora } } };
   }
 
   return where;
