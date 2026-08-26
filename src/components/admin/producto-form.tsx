@@ -86,7 +86,7 @@ export function ProductoForm({
             name="marcaId"
             defaultValue={producto?.marcaId}
           >
-            <SelectTrigger id="marcaId">
+            <SelectTrigger id="marcaId" className="w-full">
               <SelectValue placeholder="Selecciona una marca" />
             </SelectTrigger>
             <SelectContent>
@@ -106,7 +106,7 @@ export function ProductoForm({
             name="categoriaId"
             defaultValue={producto?.categoriaId}
           >
-            <SelectTrigger id="categoriaId">
+            <SelectTrigger id="categoriaId" className="w-full">
               <SelectValue placeholder="Selecciona una categoría" />
             </SelectTrigger>
             <SelectContent>
@@ -191,7 +191,7 @@ export function ProductoForm({
             value={tipo}
             onValueChange={(v) => v && setTipo(v as "PROPIO" | "DROPSHIPPING")}
           >
-            <SelectTrigger id="tipo">
+            <SelectTrigger id="tipo" className="w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -208,7 +208,7 @@ export function ProductoForm({
               name="distribuidorId"
               defaultValue={producto?.distribuidorId ?? undefined}
             >
-              <SelectTrigger id="distribuidorId">
+              <SelectTrigger id="distribuidorId" className="w-full">
                 <SelectValue placeholder="Selecciona un distribuidor" />
               </SelectTrigger>
               <SelectContent>

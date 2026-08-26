@@ -69,7 +69,7 @@ export function OfertaForm({
           name="productoId"
           defaultValue={oferta?.productoId}
         >
-          <SelectTrigger id="productoId">
+          <SelectTrigger id="productoId" className="w-full">
             <SelectValue placeholder="Selecciona un producto" />
           </SelectTrigger>
           <SelectContent>
@@ -94,7 +94,7 @@ export function OfertaForm({
             value={tipo}
             onValueChange={(v) => v && setTipo(v as "PORCENTAJE" | "MONTO_FIJO")}
           >
-            <SelectTrigger id="tipo">
+            <SelectTrigger id="tipo" className="w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

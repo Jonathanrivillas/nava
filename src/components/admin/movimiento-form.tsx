@@ -59,7 +59,7 @@ export function MovimientoForm({ productos }: { productos: Producto[] }) {
             items={productos.map((p) => ({ value: p.id, label: `${p.nombre} (stock: ${p.stock})` }))}
             name="productoId"
           >
-            <SelectTrigger id="mov-productoId">
+            <SelectTrigger id="mov-productoId" className="w-full">
               <SelectValue placeholder="Selecciona un producto" />
             </SelectTrigger>
             <SelectContent>
@@ -82,7 +82,7 @@ export function MovimientoForm({ productos }: { productos: Producto[] }) {
             value={tipo}
             onValueChange={(v) => v && setTipo(v as "ENTRADA" | "SALIDA")}
           >
-            <SelectTrigger id="mov-tipo">
+            <SelectTrigger id="mov-tipo" className="w-full">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

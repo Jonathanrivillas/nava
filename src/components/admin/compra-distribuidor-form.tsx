@@ -75,7 +75,7 @@ export function CompraDistribuidorForm({
             items={distribuidores.map((d) => ({ value: d.id, label: d.nombre }))}
             name="distribuidorId"
           >
-            <SelectTrigger id="compra-distribuidorId">
+            <SelectTrigger id="compra-distribuidorId" className="w-full">
               <SelectValue placeholder="Selecciona un distribuidor" />
             </SelectTrigger>
             <SelectContent>
@@ -96,7 +96,7 @@ export function CompraDistribuidorForm({
             items={productosDropshipping.map((p) => ({ value: p.id, label: p.nombre }))}
             name="productoId"
           >
-            <SelectTrigger id="compra-productoId">
+            <SelectTrigger id="compra-productoId" className="w-full">
               <SelectValue placeholder="Selecciona un producto" />
             </SelectTrigger>
             <SelectContent>
