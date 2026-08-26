@@ -25,7 +25,11 @@ const METODOS_PAGO = [
   },
 ];
 
-export function CheckoutView() {
+export function CheckoutView({
+  usuario,
+}: {
+  usuario: { nombre: string; email: string | null } | null;
+}) {
   const { items, subtotal, clear } = useCart();
   const router = useRouter();
 
@@ -82,24 +86,37 @@ export function CheckoutView() {
 
       <form onSubmit={onSubmit} className="flex flex-col gap-10 lg:flex-row">
         <div className="flex flex-1 flex-col gap-8">
-          <div className="flex w-fit rounded-lg bg-muted p-1">
-            <div className="rounded-md bg-card px-5 py-2.5 text-sm font-semibold shadow-sm">
-              Comprar como invitado
+          {usuario ? (
+            <div className="flex items-center gap-2 rounded-lg bg-muted px-4 py-3 text-sm">
+              <CheckCircleIcon width={16} height={16} className="text-success" />
+              Comprando como <span className="font-semibold">{usuario.nombre}</span>
             </div>
-            <div
-              className="cursor-not-allowed rounded-md px-5 py-2.5 text-sm font-semibold text-muted-foreground"
-              title="Disponible próximamente"
-            >
-              Iniciar sesión
+          ) : (
+            <div className="flex w-fit items-center gap-1 rounded-lg bg-muted p-1">
+              <div className="rounded-md bg-card px-5 py-2.5 text-sm font-semibold shadow-sm">
+                Comprar como invitado
+              </div>
+              <Link
+                href="/login?callbackUrl=/checkout"
+                className="rounded-md px-5 py-2.5 text-sm font-semibold text-muted-foreground hover:text-foreground"
+              >
+                Iniciar sesión
+              </Link>
             </div>
-          </div>
+          )}
 
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Datos de contacto</h3>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="flex flex-col gap-1.5">
                 <Label htmlFor="nombreContacto">Nombre completo</Label>
-                <Input id="nombreContacto" name="nombreContacto" placeholder="María Pérez" required />
+                <Input
+                  id="nombreContacto"
+                  name="nombreContacto"
+                  placeholder="María Pérez"
+                  defaultValue={usuario?.nombre ?? ""}
+                  required
+                />
                 {fieldErrors.nombreContacto && (
                   <p className="text-xs text-destructive">{fieldErrors.nombreContacto}</p>
                 )}
@@ -116,7 +133,13 @@ export function CheckoutView() {
               <Label htmlFor="emailContacto">
                 Correo electrónico <span className="font-normal text-muted-foreground">(opcional)</span>
               </Label>
-              <Input id="emailContacto" name="emailContacto" type="email" placeholder="tucorreo@ejemplo.com" />
+              <Input
+                id="emailContacto"
+                name="emailContacto"
+                type="email"
+                placeholder="tucorreo@ejemplo.com"
+                defaultValue={usuario?.email ?? ""}
+              />
               {fieldErrors.emailContacto && (
                 <p className="text-xs text-destructive">{fieldErrors.emailContacto}</p>
               )}

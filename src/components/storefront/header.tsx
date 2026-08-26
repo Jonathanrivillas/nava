@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { SearchIcon, UserIcon, HeartIcon } from "@/components/storefront/icons";
+import { SearchIcon, HeartIcon } from "@/components/storefront/icons";
 import { CartBadge } from "@/components/cart/cart-badge";
+import { UserMenu } from "@/components/storefront/user-menu";
 
-export function StorefrontHeader() {
+export async function StorefrontHeader() {
   return (
     <header className="border-b border-border">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 lg:px-10">
@@ -28,7 +29,7 @@ export function StorefrontHeader() {
         </form>
 
         <div className="flex items-center gap-5 text-foreground">
-          <UserIcon />
+          <UserMenu />
           <HeartIcon />
           <CartBadge />
         </div>

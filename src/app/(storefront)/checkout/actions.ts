@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { auth } from "@/auth";
 import type { Prisma } from "@/generated/prisma/client";
 import { calcularPrecioFinal, getOfertaActiva } from "@/lib/ofertas";
 
@@ -14,9 +15,8 @@ const checkoutSchema = z.object({
   nombreContacto: z.string().trim().min(3, "Ingresa tu nombre completo"),
   telefonoContacto: z.string().trim().min(7, "Ingresa un teléfono válido"),
   emailContacto: z
-    .string()
-    .trim()
     .email("Correo inválido")
+    .trim()
     .optional()
     .or(z.literal(""))
     .transform((v) => v || undefined),
@@ -45,6 +45,7 @@ export async function crearPedido(input: CheckoutInput): Promise<CrearPedidoResu
   }
 
   const data = parsed.data;
+  const session = await auth();
 
   try {
     const pedidoId = await prisma.$transaction(async (tx) => {
@@ -86,10 +87,11 @@ export async function crearPedido(input: CheckoutInput): Promise<CrearPedidoResu
 
       const pedido = await tx.pedido.create({
         data: {
+          userId: session?.user?.id,
           nombreContacto: data.nombreContacto,
           telefonoContacto: data.telefonoContacto,
           emailContacto: data.emailContacto ?? null,
-          esInvitado: true,
+          esInvitado: !session?.user,
           estado: "PENDIENTE",
           subtotal,
           costoEnvio,
