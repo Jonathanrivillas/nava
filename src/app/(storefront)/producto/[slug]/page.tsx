@@ -42,8 +42,23 @@ export default async function ProductoPage({
 
       <div className="flex flex-col gap-14 lg:flex-row">
         <div className="w-full lg:w-[440px] lg:shrink-0">
-          <div className="flex h-[440px] items-center justify-center rounded-2xl bg-gradient-to-br from-[oklch(94%_0.03_40)] to-[oklch(88%_0.05_30)] text-[oklch(65%_0.04_35)]">
-            <ImagePlaceholderIcon width={48} height={48} />
+          <div
+            className={`flex h-[440px] items-center justify-center overflow-hidden rounded-2xl ${
+              producto.imagenPrincipal
+                ? ""
+                : "bg-gradient-to-br from-[oklch(94%_0.03_40)] to-[oklch(88%_0.05_30)] text-[oklch(65%_0.04_35)]"
+            }`}
+          >
+            {producto.imagenPrincipal ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={producto.imagenPrincipal}
+                alt={producto.nombre}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <ImagePlaceholderIcon width={48} height={48} />
+            )}
           </div>
         </div>
 

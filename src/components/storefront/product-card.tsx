@@ -18,9 +18,16 @@ export function ProductCard({ producto }: { producto: ProductoConRelaciones }) {
       className="flex flex-col gap-3 rounded-xl border border-border bg-card p-3 transition-shadow hover:shadow-md"
     >
       <div
-        className={`relative flex h-48 items-center justify-center rounded-lg bg-gradient-to-br text-[oklch(65%_0.04_35)] ${gradienteFor(producto.id)}`}
+        className={`relative flex h-48 items-center justify-center overflow-hidden rounded-lg ${
+          producto.imagenPrincipal ? "" : `bg-gradient-to-br text-[oklch(65%_0.04_35)] ${gradienteFor(producto.id)}`
+        }`}
       >
-        <ImagePlaceholderIcon width={30} height={30} />
+        {producto.imagenPrincipal ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={producto.imagenPrincipal} alt={producto.nombre} className="h-full w-full object-cover" />
+        ) : (
+          <ImagePlaceholderIcon width={30} height={30} />
+        )}
         {oferta && (
           <span className="absolute left-2 top-2 rounded-full bg-destructive px-2 py-1 text-[11px] font-bold text-white">
             {oferta.tipo === "PORCENTAJE" ? `-${Number(oferta.valor)}%` : "Oferta"}

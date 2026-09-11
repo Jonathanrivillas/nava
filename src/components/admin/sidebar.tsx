@@ -25,7 +25,7 @@ export function AdminSidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="flex h-full w-60 shrink-0 flex-col bg-sidebar p-4 text-sidebar-foreground">
+    <div className="sticky top-0 flex h-screen w-60 shrink-0 flex-col overflow-y-auto bg-sidebar p-4 text-sidebar-foreground">
       <div className="px-3 pb-8 pt-2 font-display text-2xl italic">
         Nava <span className="font-sans text-xs not-italic text-sidebar-foreground/60">Admin</span>
       </div>
