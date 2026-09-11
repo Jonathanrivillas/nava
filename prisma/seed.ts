@@ -52,6 +52,7 @@ async function main() {
   await prisma.producto.createMany({
     data: [
       {
+        slug: "base-liquida-fit-me",
         nombre: "Base líquida Fit Me (prueba)",
         marcaId: maybelline.id,
         categoriaId: rostro.id,
@@ -62,6 +63,7 @@ async function main() {
         stock: 15,
       },
       {
+        slug: "mascara-lash-sensational",
         nombre: "Máscara de pestañas Lash Sensational (prueba)",
         marcaId: maybelline.id,
         categoriaId: ojos.id,
@@ -72,6 +74,7 @@ async function main() {
         stock: 20,
       },
       {
+        slug: "labial-rouge-signature",
         nombre: "Labial Rouge Signature (prueba)",
         marcaId: loreal.id,
         categoriaId: labios.id,
@@ -83,6 +86,7 @@ async function main() {
         stock: 0,
       },
       {
+        slug: "paleta-sombras-nude",
         nombre: "Paleta de sombras Nude (prueba)",
         marcaId: mac.id,
         categoriaId: ojos.id,
@@ -94,6 +98,7 @@ async function main() {
         stock: 0,
       },
       {
+        slug: "rubor-en-polvo",
         nombre: "Rubor en polvo (prueba)",
         marcaId: essence.id,
         categoriaId: rostro.id,
